@@ -1,94 +1,106 @@
-/* --- ESTILOS GENERALES --- */
+/* Estilo general */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fefefe;
-  padding: 20px;
-  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fafafa;
   color: #333;
+  margin: 0;
+  padding: 20px;
   text-align: center;
 }
 
 h1 {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
-/* --- CONTENEDOR GENERAL DE LA MALLA --- */
-#malla {
+p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+#malla-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 20px;
-  align-items: center;
+  padding: 20px 0;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-/* --- CADA SEMESTRE --- */
+/* Cada columna de semestre */
 .semestre {
+  flex: 0 0 250px;
+  background-color: #fff;
+  border: 2px solid #ddd;
   border-radius: 12px;
-  padding: 15px;
-  width: 90%;
-  max-width: 1000px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 .semestre h2 {
-  margin-top: 0;
-  font-size: 20px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #444;
 }
 
-/* --- GRID DE ASIGNATURAS DENTRO DE UN SEMESTRE --- */
-.asignaturas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-  margin-top: 10px;
-}
-
-/* --- CAJA DE CADA ASIGNATURA --- */
-.asignatura {
+/* Cada ramo */
+.ramo {
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  background-color: #c8e6c9; /* Verde pastel desbloqueado por defecto */
+  color: #222;
   cursor: pointer;
-  font-size: 14px;
   transition: all 0.3s ease;
-  min-height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid transparent;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border: 1.5px solid #bbb;
+  user-select: none;
 }
 
-/* ESTADO: DISPONIBLE (NO aprobada, pero desbloqueada) */
-.asignatura.disponible {
-  background-color: #e6f9b5; /* verde lima pastel */
-  color: #2f4f2f;
-  opacity: 1;
+.ramo span {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  color: #555;
 }
 
-/* ESTADO: APROBADA */
-.asignatura.aprobada {
-  background-color: #c4d8aa; /* verde oliva pastel */
-  text-decoration: line-through;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-/* ESTADO: BLOQUEADA */
-.asignatura.bloqueada {
-  background-color: #e0e0e0; /* gris */
-  color: #777;
+/* Estado: bloqueado */
+.ramo.bloqueado {
+  background-color: #e0e0e0;
+  color: #999;
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
-/* --- COLORES POR SEMESTRE --- */
-.sem-1  { background-color: #ffe0b2; } /* naranja pastel */
-.sem-2  { background-color: #dcedc8; } /* verde pastel */
-.sem-3  { background-color: #bbdefb; } /* azul pastel */
-.sem-4  { background-color: #e1bee7; } /* lila pastel */
-.sem-5  { background-color: #fff9c4; } /* amarillo pastel */
-.sem-6  { background-color: #ffcdd2; } /* rojo pastel */
-.sem-7  { background-color: #b2ebf2; } /* cian pastel */
-.sem-8  { background-color: #d7ccc8; } /* café pastel */
-.sem-9  { background-color: #f0f4c3; } /* lima pastel */
-.sem-10 { background-color: #f8bbd0; } /* rosa pastel */
+/* Estado: aprobado */
+.ramo.aprobado {
+  background-color: #388e3c; /* Verde oscuro */
+  color: #fff;
+  text-decoration: line-through;
+  border-color: #2e7d32;
+  opacity: 0.8;
+}
 
+/* Colores por semestre pastel */
+.semestre[data-semestre="1"] .ramo { background-color: #ffe0b2; } /* Naranja pastel */
+.semestre[data-semestre="2"] .ramo { background-color: #dcedc8; } /* Verde pastel */
+.semestre[data-semestre="3"] .ramo { background-color: #bbdefb; } /* Azul pastel */
+.semestre[data-semestre="4"] .ramo { background-color: #e1bee7; } /* Lila pastel */
+.semestre[data-semestre="5"] .ramo { background-color: #fff9c4; } /* Amarillo pastel */
+.semestre[data-semestre="6"] .ramo { background-color: #ffcdd2; } /* Rojo pastel */
+.semestre[data-semestre="7"] .ramo { background-color: #b2ebf2; } /* Cian pastel */
+.semestre[data-semestre="8"] .ramo { background-color: #d7ccc8; } /* Café pastel */
+.semestre[data-semestre="9"] .ramo { background-color: #f0f4c3; } /* Lima pastel */
+.semestre[data-semestre="10"] .ramo { background-color: #f8bbd0; } /* Rosa pastel */
 
+/* Aprobado anula color pastel */
+.ramo.aprobado { background-color: #388e3c !important; }
+
+/* Scroll personalizado para columnas largas */
+#malla-container::-webkit-scrollbar {
+  height: 8px;
+}
+#malla-container::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
