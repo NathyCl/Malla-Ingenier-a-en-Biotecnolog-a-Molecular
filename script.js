@@ -102,4 +102,25 @@ resetBtn.addEventListener("click", () => {
     renderMalla();
   }
 });
+function mostrarProgreso() {
+  const total = asignaturas.length;
+  const aprob = aprobadas.length;
+  const porcentaje = ((aprob / total) * 100).toFixed(1);
+
+  // Progreso general
+  const progresoDiv = document.getElementById("progreso");
+  progresoDiv.textContent = `Avance total: ${aprob} / ${total} asignaturas (${porcentaje}%)`;
+
+  // Progreso por semestre (opcional)
+  // Si quieres también mostrar por semestre, puedes implementarlo aquí
+}
+
+// Llama esta función desde renderMalla
+function renderMalla() {
+  malla.innerHTML = "";
+
+  //... tu código para crear semestres y asignaturas
+
+  mostrarProgreso();  // <-- Actualiza progreso cada vez que renderizas
+}
 
