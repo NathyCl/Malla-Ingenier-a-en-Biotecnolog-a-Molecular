@@ -93,4 +93,13 @@ function aprobarRamo(id) {
 
 // Inicializar
 renderMalla();
+// Botón para reiniciar progreso
+const resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", () => {
+  if (confirm("¿Seguro que quieres reiniciar todo el progreso?")) {
+    aprobadas = [];
+    localStorage.removeItem("aprobadas");
+    renderMalla();
+  }
+});
 
